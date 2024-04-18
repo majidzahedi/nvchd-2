@@ -114,4 +114,11 @@ M.fold = {
   },
 }
 
+M.rest = {
+  keys = {
+    { "<leader>rr", "<cmd>Rest run<cr>", desc = "Run request under the cursor" },
+    { "<leader>rl", "<cmd>Rest run last<cr>", desc = "Re-run latest request" },
+  },
+}
+
 return M
