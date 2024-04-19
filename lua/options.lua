@@ -10,3 +10,4 @@ vim.opt_global.clipboard = "unnamedplus"
 vim.opt.relativenumber = true
 
 vim.opt_local.conceallevel = 2
+vim.lsp.set_log_level "trace"

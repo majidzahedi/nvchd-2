@@ -48,7 +48,17 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
     keys = overriders.typescript.keys,
-    lazy = false,
+    config = function()
+      local lspconfig = require "nvchad.configs.lspconfig"
+
+      return require("typescript-tools").setup {
+        on_attach = lspconfig.on_attach,
+        on_init = lspconfig.on_init,
+        capabilities = lspconfig.capabilities,
+        settings = {},
+      }
+    end,
+    ft = { "typescript", "typescriptreact", "javascriptreact", "javascript" },
   },
 
   {
@@ -170,6 +180,14 @@ return {
       for _, ext in ipairs(opts.extensions_list) do
         telescope.load_extension(ext)
       end
+    end,
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    config = function()
+      require("nvim-ts-autotag").setup()
     end,
   },
 }

@@ -4,13 +4,15 @@ M.mason = {
   ensure_installed = {
     "lua-language-server",
     "stylua",
-    "html-lsp",
-    "css-lsp",
-    "prettier",
 
     -- web dev stuff
-    "tailwindcss-language-server",
+    "html-lsp",
+    "css-lsp",
+    "eslint-lsp",
+
     "prettier",
+
+    "tailwindcss-language-server",
     "emmet-language-server",
 
     -- devops stuff
@@ -43,6 +45,7 @@ M.treesitter = {
 
     "dockerfile",
     "yaml",
+    "json",
   },
 }
 
@@ -61,6 +64,7 @@ M.typescript = {
     { "<leader>lR", "<Cmd> TSToolsRemoveUnusedImports <CR>", desc = "Remove Unused" },
     { "<leader>lF", "<Cmd> TSToolsFixAll <CR>", desc = "Fix All" },
     { "<leader>lA", "<Cmd> TSToolsAddMissingImports <CR>", desc = "Add Missing Imports" },
+    { "<leader>lr", "<Cmd> TSToolsRenameFile <CR>", desc = "Renaming File" },
   },
 }
 

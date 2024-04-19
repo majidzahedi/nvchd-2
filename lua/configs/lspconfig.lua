@@ -4,8 +4,31 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "tsserver" }
+local servers = { "emmet_language_server", "dockerls" }
 local util = require "lspconfig/util"
+
+-- lsps with default config
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
+  }
+end
+
+lspconfig.eslint.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+  root_dir = util.root_pattern ".eslintrc.js",
+}
+
+lspconfig.tailwindcss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "typescript", "javascript", "typescriptreact", "html", "javascriptreact", "css" },
+  root_dir = util.root_pattern("tailwind.config.js", "tailwind.config.ts"),
+}
 
 lspconfig.gopls.setup {
   on_attach = on_attach,
@@ -23,12 +46,3 @@ lspconfig.gopls.setup {
     },
   },
 }
-
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  }
-end
